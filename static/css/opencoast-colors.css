@@ -1,0 +1,70 @@
+/*
+
+* Filename: oepncoast-colors.css
+* Description: stylesheet for OpenCoast Landing Page
+* Version: 1.0
+* Website:
+* Author: BullzArtDesign - ArtFaks
+
+/*
+
+/* ============ BASIC =============== */
+
+.hero_fullscreen, nav a, .subsection, #message, .cta_button_area a, .color_bg { color:#565d67;}
+
+.subsection.darker_bg { background-color: #262626;}
+.subsection.lighter_bg { background-color: #FFFFFF;}
+
+.preloader_header { background-color: #212121;}
+
+.hero_fullscreen, .subsection{ background-color: #E3E3E3;}
+
+.preloader_header .preloader_loader svg path.preloader_loader_circlebg { stroke: rgba(255, 255, 255, .1);}
+.preloader_header .preloader_loader svg path.preloader_loader_circle { transition: stroke-dashoffset 0.2s; stroke: rgba(255, 255, 255, .95);}
+
+.menu_bar_navigation ul li a { color:white;}
+
+.input-field label { color:white;}
+
+.newsletter_form input[type=text],
+.newsletter_form input[type=password],
+.newsletter_form input[type=email],
+.newsletter_form input[type=date],
+.newsletter_form textarea { border-bottom: 1px solid rgba(255, 255, 255, .7);}
+
+.menu_bar { background-color:#424242;}
+
+.iconbox_icon { color: rgba(255,255,255,0.5);}
+
+#reviews .owl-theme .owl-controls .owl-page span { border-color:#565d67 !important; background: rgba(255,255,255,0);}
+#reviews .owl-theme .owl-controls .owl-page.active span,
+#reviews .owl-theme .owl-controls.clickable .owl-page:hover span {
+	background: rgba(255,80,70,1);
+	border-color:white !important;
+}
+
+/* =============== CUSTOM ================== */
+
+.btn, .btn-large { }
+.btn-grey, .btn-large-grey { background-color: rgba(191, 194, 197, 1);}
+.btn-green, .btn-large-green { background-color: rgba(76, 217, 99, 1);}
+.btn-sunny, .btn-large-sunny { background-color: rgba(255, 81, 71, 1);}
+.btn-blue, .btn-large-blue { background-color: rgba(0, 175, 240, 1);}
+
+.btn:hover, .btn-large:hover {}
+.btn-grey:hover, .btn-large-grey:hover { background-color: rgba(191, 194, 197, 0.5);}
+.btn-green:hover, .btn-large-green:hover { background-color: rgba(76, 217, 99, 0.5);}
+.btn-sunny:hover, .btn-large-sunny:hover { background-color: rgba(255, 81, 71, 0.5);}
+.btn-blue:hover, .btn-large-blue:hover { background-color: rgba(0, 175, 240, 0.5);}
+
+.hero_fullscreen.background_solid {
+	background: url("../img/hero.jpg") no-repeat 0 center transparent;
+	-webkit-background-size: cover;
+	-moz-background-size: cover;
+	-o-background-size: cover;
+	background-size: cover;
+}
+
+.color_bg { background-color: #FFF;}
+
+a { color:#9c27b0;}

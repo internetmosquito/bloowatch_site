@@ -1,0 +1,515 @@
+{% extends "_base.html" %}
+{% block content %}
+
+		<!-- MORE_INFOS -->
+		<section id="more_info" class="subsection lighter_bg align-center">
+			<div class="container">
+				<div class="row">
+
+					<div class="col-xs-12 col-sm-4 col-md-4 col-lg-4">
+						<div class="iconbox content_anim1">
+							<i class="md-portrait md-3x sunlight"></i>
+							<div class="iconbox_content">
+								<h5>Planning</h5>
+								<p>Supporting planning from activities requirements and context with weather integration.</p>
+							</div>
+						</div>
+					</div>
+
+					<div class="col-xs-12 col-sm-4 col-md-4 col-lg-4">
+						<div class="iconbox content_anim2">
+							<i class="md-trending-up md-3x sunlight"></i>
+							<div class="iconbox_content">
+								<h5>Communication</h5>
+								<p>Delivering messages to selected groups with the most appropiate time, contents and channels.</p>
+							</div>
+						</div>
+					</div>
+
+					<div class="col-xs-12 col-sm-4 col-md-4 col-lg-4">
+						<div class="iconbox content_anim3">
+							<i class="md-local-atm md-3x sunlight"></i>
+							<div class="iconbox_content">
+								<h5>Marketing & Sales</h5>
+								<p>Assisting the online marketing in gaining higher loyalty and bringing new customers up to the booking engine.</p>
+							</div>
+						</div>
+					</div>
+
+					<div class="col-xs-12 col-sm-12 col-md-12 col-lg-12">
+						<h3 class="newsletter_title">FIND MORE DETAIL ABOUT THE BLOOWATCH SOLUTION</h3>
+						<div class="subscribe content_anim4">
+							<form action="" method="" id="newsletter-form">
+                                {{ form.hidden_tag() }}
+								<div class="input-group">
+									<input type="email" name="email" class="newsletter-email form-control" placeholder="ENTER EMAIL ADDRESS">
+										<span class="input-group-btn">
+											<button value="Register" type="submit" class="btn btn-green waves-effect waves-light newsletter-submit">Get More Info</button>
+										</span>
+								</div>
+                                {% with success = get_flashed_messages(category_filter=["success"]) %}
+                                    {% if success %}
+                                    <div class="success">
+                                      <ul>
+                                        {%- for msg in success %}
+                                        <li><strong>Success!</strong>{{ msg }}</li>
+                                        {% endfor -%}
+                                      </ul>
+                                    </div>
+                                    {% endif %}
+                                {% endwith %}
+                                {% with errors = get_flashed_messages(category_filter=["error"]) %}
+                                    {% if errors %}
+                                    <div class="error">
+                                      <ul>
+                                        {%- for msg in errors %}
+                                        <li><strong>Error!</strong> {{ msg }}</li>
+                                        {% endfor -%}
+                                      </ul>
+                                    </div>
+                                    {% endif %}
+                                {% endwith %}
+							</form>
+						</div>
+					</div>
+
+				</div>
+			</div>
+		</section>
+		<!-- END OF MORE_INFOS -->
+
+
+		<!-- FEATURES -->
+		<section class="subsection" id="features">
+			<div class="container">
+
+				<div class="row">
+					<div class="col-xs-12 col-sm-6 col-md-6 col-lg-6 content_anim5">
+						<h3>Our Free Mobile App Available Very Soon!</h3>
+						<p>At Bloowatch we work hard to build the best possible solution for the specific needs of the watersports activity providers. Please register and we will let you know when our free mobile apps are ready.</p>
+						<a href="" id="appstore_badge" class="content_anim6"></a>
+						<a href="" id="android_badge" class="content_anim7"></a>
+					</div>
+					<div class="col-xs-12 col-sm-6 col-md-6 col-lg-6 align-center content_anim8">
+						<video class="img_responsive" controls>
+							<source src="{{ url_for('static', filename='img/movie.mp4') }}" type="video/mp4">
+							Your browser does not support the video tag.
+						</video>
+						<!--<img src="assets/img/video-th.jpg" alt="" class="img_responsive">-->
+					</div>
+				</div>
+
+			</div>
+		</section>
+		<!-- END OF FEATURES -->
+
+		<!-- PLAN OFFERS -->
+
+		<section id="offers" class="subsection lighter_bg">
+			<div class="container">
+                <!--
+				<div class="row">
+					<div class="col-xs-12 col-sm-12 col-md-12 col-lg-12 align-center">
+						<div class="intro content_anim9">
+							<h3 class="offers_title">SELECT A PLAN</h3>
+							<p class="offers_desc">Please have a look a the different options starting with the Assistant information to complement with the Professional features and/or the <strong>HighGrowth</strong> capabilities.</p>
+						</div>
+					</div>
+				</div>
+
+				<div class="row">
+					<div class="col-xs-12 col-sm-12 col-md-12 col-lg-12 align-center">
+						<div class="switches content_anim10">
+							<div class="toggle-switch" data-ts-color="sunny">
+								<label for="ts2" class="ts-label">MONTH</label>
+								<input id="ts2" type="checkbox" hidden="hidden">
+								<label for="ts2" class="ts-helper"></label>
+								<label for="ts2" class="ts-label">YEAR</label>
+							</div>
+						</div>
+					</div>
+				</div>
+
+				<div class="row">
+					<div id="plan_A" class="col-xs-12 col-sm-4 col-md-4 col-lg-4 align-center plan_box content_anim10">
+						<h4>COACH</h4>
+						<h6 class="price">€119/<span>Month</span></h6>
+						<button class="btn btn-grey">YOUR PLAN</button>
+						<ul class="">
+							<li><strong>Personalized</strong> recommendations</li>
+							<li><strong>Brieffing & after session</strong> cards</li>
+							<li><strong>Connecting</strong> the community</li>
+						</ul>
+						<label class="checkbox checkbox-inline">
+							<input type="checkbox" value="option1" checked>
+							<i class="input-helper"></i>selected
+						</label>
+					</div>
+
+					<div class="addPlus content_anim11"><i class="md-add-circle-outline md-2x sunlight"></i></div>
+
+					<div id="plan_B" class="col-xs-12 col-sm-4 col-md-4 col-lg-4 align-center plan_box content_anim11">
+						<h4>MANAGER</h4>
+						<h6 class="price">+€89/<span>Month</span></h6>
+						<button class="btn" style="background-color: #3590CC;">UPGRADE</button>
+						<ul class="">
+							<li><strong>Planning </strong> logic</li>
+							<li><strong>Automatic </strong> notifications</li>
+							<li><strong>eCommerce</strong> Mobile</li>
+						</ul>
+						<label class="checkbox checkbox-inline sunlight">
+							<input type="checkbox" value="option2">
+							<i class="input-helper"></i>add this plan
+						</label>
+					</div>
+
+					<div class="addPlus content_anim12"><i class="md-add-circle-outline md-2x bluelight"></i></div>
+
+					<div id="plan_C" class="col-xs-12 col-sm-4 col-md-4 col-lg-4 align-center plan_box content_anim12">
+						<h4>MARKETING</h4>
+						<h6 class="price">+€89/<span>Month</span></h6>
+						<button class="btn" style="background-color: #0F71B8;">UPGRADE</button>
+						<ul class="">
+							<li><strong>Personalized</strong> recommendations</li>
+							<li><strong>Brieffing & after session</strong> cards</li>
+							<li><strong>Connecting</strong> the community</li>
+						</ul>
+
+						<label class="checkbox checkbox-inline bluelight">
+							<input type="checkbox" value="option3">
+							<i class="input-helper"></i>add this plan
+						</label>
+					</div>
+				</div>
+                -->
+				<div class="row double">
+					<div class="col-xs-12 col-sm-12 col-md-12 col-lg-12 align-center">
+						<div class="intro content_anim13">
+							<h3 class="uppertxt">PACKED WITH <span class="sunlight">SPECIALIZED</span> FEATURES</h3>
+							<p class="offers_desc">We strive to offer you the most important features to help you grow your business as fast as possible, leveraging you from all the dull work that you do not like.</p>
+						</div>
+					</div>
+				</div>
+
+				<div class="row double">
+					<!-- FEAT 1 -->
+					<div class="col-xs-6 col-sm-4 col-md-4 col-lg-4 align-center">
+						<div class="iconbox content_anim14">
+							<i class="md-extension md-2x"></i>
+							<div class="iconbox_content">
+								<h5>PERSONALIZED</h5>
+								<p>Personalized recommendations.<br>Automatic notifications to advise all your customers from their level and the conditions.</p>
+							</div>
+						</div>
+					</div>
+
+					<!-- FEAT 2 -->
+					<div class="col-xs-6 col-sm-4 col-md-4 col-lg-4 align-center">
+						<div class="iconbox content_anim15">
+							<i class="md-account-box md-2x"></i>
+							<div class="iconbox_content">
+								<h5>USER PROFILES</h5>
+								<p>Individual profiles.<br>All customers have their own profiles and settings to create the best water sports app experience possible.</p>
+							</div>
+						</div>
+					</div>
+
+					<!-- FEAT 3 -->
+					<div class="col-xs-6 col-sm-4 col-md-4 col-lg-4 align-center">
+						<div class="iconbox content_anim16">
+							<i class="md-group-add md-2x"></i>
+							<div class="iconbox_content">
+								<h5>COMMUNITY</h5>
+								<p>The digital community.<br>Create a vibrant community around your business to foster customer´s fidelization and get new clients.</p>
+							</div>
+						</div>
+					</div>
+				</div>
+
+				<div class="row double">
+					<!-- FEAT 4 -->
+					<div class="col-xs-6 col-sm-4 col-md-4 col-lg-4 align-center">
+						<div class="iconbox content_anim17">
+							<i class="md-rotate-left md-2x"></i>
+							<div class="iconbox_content">
+								<h5>AFTER SESSION</h5>
+								<p>After session souvenir cards.<br>With all information, contents & sports data to understand & share what happened in the water.</p>
+							</div>
+						</div>
+					</div>
+
+					<!-- FEAT 5 -->
+					<div class="col-xs-6 col-sm-4 col-md-4 col-lg-4 align-center">
+						<div class="iconbox content_anim18">
+							<i class="md-history md-2x"></i>
+							<div class="iconbox_content">
+								<h5>THE APP TIMELINE</h5>
+								<p>The App Timeline.<br>Where all the information is accessed and commented.</p>
+							</div>
+						</div>
+					</div>
+
+					<!-- FEAT 6 -->
+					<div class="col-xs-6 col-sm-4 col-md-4 col-lg-4 align-center">
+						<div class="iconbox content_anim19">
+							<i class="md-style md-2x"></i>
+							<div class="iconbox_content">
+								<h5>AUTO SESSION</h5>
+								<p>Automatic Session Cards.<br>Each session & services by the school can be targeted to appropriate customers through modern cards.</p>
+							</div>
+						</div>
+					</div>
+
+				</div>
+			</div>
+		</section>
+		<!-- END OF PLAN OFFERS -->
+
+		<!-- SUBSCRIBE -->
+		<section class="subsection" style="padding-top:1rem;">
+			<div class="container">
+				<div class="row align-center">
+					<div class="col-xs-12 col-sm-12 col-md-12 col-lg-12">
+						<h3 class="newsletter_title">FIND MORE DETAIL ABOUT THE BLOOWATCH SOLUTION</h3>
+						<div class="subscribe content_anim4">
+							<form action="" method="" id="newsletter-form">
+                                {{ form.hidden_tag() }}
+								<div class="input-group">
+									<input type="email" name="email" class="newsletter-email form-control" placeholder="ENTER EMAIL ADDRESS">
+										<span class="input-group-btn">
+											<button value="Register" type="submit" class="btn btn-green waves-effect waves-light newsletter-submit">Get More Info</button>
+										</span>
+								</div>
+                                {% with success = get_flashed_messages(category_filter=["success"]) %}
+                                    {% if success %}
+                                    <div class="success">
+                                      <ul>
+                                        {%- for msg in success %}
+                                        <li><strong>Success!</strong>{{ msg }}</li>
+                                        {% endfor -%}
+                                      </ul>
+                                    </div>
+                                    {% endif %}
+                                {% endwith %}
+                                {% with errors = get_flashed_messages(category_filter=["error"]) %}
+                                    {% if errors %}
+                                    <div class="error">
+                                      <ul>
+                                        {%- for msg in errors %}
+                                        <li><strong>Error!</strong> {{ msg }}</li>
+                                        {% endfor -%}
+                                      </ul>
+                                    </div>
+                                    {% endif %}
+                                {% endwith %}
+							</form>
+						</div>
+					</div>
+				</div>
+			</div>
+		</section>
+		<!-- END OF SUBSCRIBE -->
+
+		<!-- REVIEWS -->
+		<!--<section id="reviews" class="subsection color_bg">
+			<div class="container">
+
+				<div class="row">
+					<div class="col-xs-12 col-sm-8 col-md-8 col-lg-8 col-sm-offset-2 col-md-offset-2 col-lg-offset-2 content_anim20">
+
+						<h3 class="section_title">Our Clients Love us</h3>
+
+						<div class="owl-carousel align-center">
+							<!-- REVIEW 1 -->
+							<!--<div class="single_review">
+								<img src="assets/img/review_01.png" alt="" class="img-circle">
+								<div class="review_content">
+									<h6>Fusce dapibus, tellus ac cursus commodo, tortor mauris condimentum. Duis mollis, est non commodo luctus, nisi erat.</h6>
+									<p>ESCUELA ASTURIANA DE SURF</p>
+								</div>
+							</div>
+							<!-- END OF REVIEW 1 -->
+
+							<!-- REVIEW 2 -->
+							<!--<div class="single_review">
+								<img src="assets/img/review_02.png" alt="" class="img-squared">
+								<div class="review_content">
+									<h6>Fusce dapibus, tellus ac cursus commodo, tortor mauris condimentum. Duis mollis, est non commodo luctus, nisi erat.</h6>
+									<p>SURFING SAN SEBASTIAN</p>
+								</div>
+							</div>
+							<!-- END OF REVIEW 2 -->
+
+							<!-- REVIEW 3 -->
+							<!--<div class="single_review">
+								<img src="assets/img/review_03.png" alt="" class="img-circle">
+								<div class="review_content">
+									<h6>Fusce dapibus, tellus ac cursus commodo, tortor mauris condimentum. Duis mollis, est non commodo luctus, nisi erat.</h6>
+									<p>ESCUELA ASTURIANA DE SURF</p>
+								</div>
+							</div>
+							<!-- END OF REVIEW 3 -->
+
+							<!-- REVIEW 4 -->
+							<!--<div class="single_review">
+								<img src="assets/img/review_04.png" alt="" class="img-squared">
+								<div class="review_content">
+									<h6>Fusce dapibus, tellus ac cursus commodo, tortor mauris condimentum. Duis mollis, est non commodo luctus, nisi erat.</h6>
+									<p>SURFING SAN SEBASTIAN</p>
+								</div>
+							</div>
+							<!-- END OF REVIEW 4 -->
+
+						<!--</div>
+					</div>
+				</div>
+
+			</div>
+		</section>-->
+		<!-- END OF REVIEWS -->
+
+		<!-- CUSTOMERS ID -->
+		<!--<section id="customersID" class="subsection">
+			<div class="container">
+				<div class="row">
+					<div class="col-xs-6 col-sm-4 col-md-2 col-lg-2 align-center reviews_logo content_anim21"><img src="assets/img//logo1.png" alt=""></div>
+					<div class="col-xs-6 col-sm-4 col-md-2 col-lg-2 align-center reviews_logo content_anim22"><img src="assets/img/logo2.png" alt=""></div>
+					<div class="col-xs-6 col-sm-4 col-md-2 col-lg-2 align-center reviews_logo content_anim23"><img src="assets/img/logo3.png" alt=""></div>
+					<div class="col-xs-6 col-sm-4 col-md-2 col-lg-2 align-center reviews_logo content_anim24"><img src="assets/img/logo4.png" alt=""></div>
+					<div class="col-xs-6 col-sm-4 col-md-2 col-lg-2 align-center reviews_logo content_anim25"><img src="assets/img/logo5.png" alt=""></div>
+					<div class="col-xs-6 col-sm-4 col-md-2 col-lg-2 align-center reviews_logo content_anim26"><img src="assets/img/logo6.png" alt=""></div>
+				</div>
+			</div>
+		</section>-->
+		<!-- END OF CUSTOMERS ID -->
+
+
+		<!-- FAQ -->
+        <!--
+		<section id="faq" class="subsection color_bg">
+			<div class="container">
+				<div class="row">
+					<div class="col-xs-12 col-sm-12 col-md-12 col-lg-12 align-center content_anim27">
+						<div class="intro">
+							<h3 class="section_title" style="margin-bottom:1rem;">Frequently Asked Questions</h3>
+							<p>Got questions? We have answers.</p>
+						</div>
+					</div>
+				</div>
+
+				<div class="row align-left content_anim28">
+					<!-- QUESTION 1 -->
+        <!--
+					<div class="col-xs-12 col-sm-6 col-md-6 col-lg-6">
+						<div class="iconbox content_anim1">
+							<h5>How does the free trial work?</h5>
+							<p>You can use the free trial to test the app for 30 days (you can even extend your trial - just contact our sales staff directly to request an extension). The free trial includes 30 days of access to all of our funtionalities so you can start working straight away.
+							</p>
+						</div>
+					</div>
+					<!-- END OF QUESTION 1 -->
+
+					<!-- QUESTION 2 -->
+        <!--
+					<div class="col-xs-12 col-sm-6 col-md-6 col-lg-6">
+						<div class="iconbox content_anim1">
+							<h5>Do I need to choose plan now?</h5>
+							<p>No need, you can simply start using the free trial and once it expires then you can must select a plan if you want to continue using the product.</p>
+						</div>
+					</div>
+					<!-- END OF QUESTION 2 -->
+    <!--
+				</div>
+
+				<div class="row align-left content_anim29">
+					<!-- QUESTION 3 -->
+    <!--
+					<div class="col-xs-12 col-sm-6 col-md-6 col-lg-6">
+						<div class="iconbox content_anim1">
+							<h5>Can I switch plans later?</h5>
+							<p>You can change from one plan to another at any time free of charge. Whenever you think you need an extra set of features or you need to swtich off some of your current set of features, simply access your dashboard and change your plan.</p>
+						</div>
+					</div>
+					<!-- END OF QUESTION 3 -->
+
+					<!-- QUESTION 4 -->
+        <!--
+					<div class="col-xs-12 col-sm-6 col-md-6 col-lg-6">
+						<div class="iconbox content_anim1">
+							<h5>What payment types do you accept?</h5>
+							<p>We accept traditional payment methods, like bank transfers, credit cards and more modern alternatives like PayPal and Skrill.</p>
+						</div>
+					</div>
+					<!-- END OF QUESTION 4 -->
+    <!--
+				</div>
+
+				<div class="row align-left content_anim30">
+					<!-- QUESTION 5 -->
+        <!--
+					<div class="col-xs-12 col-sm-6 col-md-6 col-lg-6">
+						<div class="iconbox content_anim1">
+							<h5>What is SaaS?</h5>
+							<p>SaaS stands for Software as a Service, this is the model used by Bloowatch that is delivered as a service via Internet. It mainly focuses on dropping operational expenses for companies using those services.</p>
+						</div>
+					</div>
+					<!-- END OF QUESTION 5 -->
+
+					<!-- QUESTION 6 -->
+        <!--
+					<div class="col-xs-12 col-sm-6 col-md-6 col-lg-6">
+						<div class="iconbox content_anim1">
+							<h5>What are the benefits of SaaS?</h5>
+							<p>The main benefit of SaaS is cost reduction, since you only pay for the required application that you require. Another clear benefit of using SaaS is the standardization and homogenization of the delivery and release management process, since all of these is done automatically without clients noticing it.</p>
+						</div>
+					</div>
+					<!-- END OF QUESTION 6 -->
+    <!--
+				</div>
+
+			</div>
+		</section>
+		<!-- END OF FAQ -->
+
+		<!-- FOOTER -->
+		<section id="footer" class="subsection">
+			<div class="container">
+				<div class="row">
+					<div class="col-xs-12 col-sm-12 col-md-12 col-lg-12 other">
+						<p class="inner">
+
+                                <a href="https://twitter.com/bloowatch">
+                                    <img src="{{ url_for('static', filename='img/twitter.png') }}" alt="">
+                                </a>|
+
+                                <a href="https://twitter.com/bloowatch">
+                                    <img src="{{ url_for('static', filename='img/facebook.png') }}" alt="">
+                                </a>
+
+
+                                |
+                                <!--<a href="">Press</a>|-->
+                                <a href="mailto:info@bloowatch.com">
+                                    <img src="{{ url_for('static', filename='img/mail.png') }}" alt="">
+                                </a>
+
+
+							<!--<a href="">Support</a>|
+							<a href="">Privacy Policy</a>-->
+						</p>
+
+						<p class="float-right inner visible-lg visible-md">
+                            <a href="skype:oduperray?userinfo">
+                                <img src="{{ url_for('static', filename='img/skype-with-circle.png') }}" alt="">
+					        </a>
+                            Call us&nbsp;<strong>+34.681.211.532</strong></p>
+					</div>
+				</div>
+			</div>
+		</section>
+		<!-- END OF FOOTER -->
+
+	</div>
+	<!-- END OF PRELOADER -->
+
+{% endblock %}
