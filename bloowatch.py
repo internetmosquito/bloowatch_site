@@ -6,13 +6,11 @@ from sqlalchemy.exc import IntegrityError
 from forms import RegisterForm
 import re
 import os
-
+import json
 import logging
 from logging import Formatter, FileHandler
-from datetime import datetime
+import datetime
 
-# initilize flask
-# app = Flask(__name__)
 
 #######################
 #### configuration ####
@@ -34,6 +32,7 @@ handler.setFormatter(Formatter(
 LOGGER.addHandler(file_handler)
 LOGGER.addHandler(handler)
 LOGGER.setLevel(logging.DEBUG)
+
 app.config.from_pyfile('_config.py')
 db = SQLAlchemy(app)
 
@@ -55,46 +54,48 @@ def valid_mail(email):
 
 @app.route('/', methods=['GET', 'POST'])
 def main():
+    return render_template('index.html')
+
+
+@app.route('/register', methods=['POST'])
+def register():
     if request.method == 'POST':
-        user_email = str(request.form['email'])
+        #user_email = request.args.get('user_email', 0, type=str)
+        user_email = str(request.form['user_email'])
         try:
-            form = RegisterForm(email=user_email)
-            if form.email.data and valid_mail(form.email.data):
+            if user_email and valid_mail(user_email):
                 from models import RegisteredMail
                 new_rm = RegisteredMail(
-                    form.email.data,
-                    datetime.utcnow(),
+                    user_email,
+                    datetime.datetime.utcnow(),
                 )
                 try:
                     db.session.add(new_rm)
                     db.session.commit()
-                    flash('Thanks for subscribing to Bloowatch, we will keep you posted!', 'success')
                     LOGGER.info('User registered correctly, email was ' + user_email)
-                    return redirect(url_for('main'))
-                except IntegrityError:
-                    flash('Provided email is already used, please use a different one', 'error')
-                    LOGGER.error('User email provided already exists, email was ' + user_email)
-                    return redirect(url_for('main'))
+                    message = 'Thanks for subscribing to Bloowatch, we will keep you posted!'
+                    return json.dumps({'status': 'OK', 'message': message})
+                except IntegrityError as e:
+                    LOGGER.error('User email provided already exists, email was ' + user_email + ' More info'
+                                 + str(e))
+                    message = 'Provided email is already used, please use a different one.'
+                    return json.dumps({'status': 'ERROR', 'message': message})
             else:
-                flash('Provided email is invalid, please use valid one', 'error')
-                LOGGER.error('Email provided is invalidad. It was ' + user_email)
-                return redirect(url_for('main'))
-        except Exception as e:
-            print e
-            flash('Unexpected error occured, please try again later', 'error')
-            LOGGER.error('Unexpected error occured')
-            return render_template('index.html', form=form)
-    return render_template('index.html')
+                LOGGER.error('Email provided is invalid. It was ' + user_email)
+                message = 'Provided email is invalid, please use valid one'
+                return json.dumps({'status': 'ERROR', 'message': message})
 
-# run the server
-# if __name__ == '__main__':
-#     app.run(debug=True)
+        except Exception as e:
+            LOGGER.error('Unexpected error occured. More info ' + str(e))
+            message = 'Unexpected error occured, Please try again later.'
+            return json.dumps({'status': 'ERROR', 'message': message})
+
 
 # Define views for errors
 @app.errorhandler(404)
 def not_found(error):
     if app.debug is not True:
-        now = datetime.now()
+        now = datetime.datetime.now()
         r = request.url
         with open('error.log', 'a') as f:
             current_timestamp = now.strftime("%d-%m-%Y %H:%M:%S")
@@ -107,7 +108,7 @@ def not_found(error):
 def internal_error(error):
     db.session.rollback()
     if app.debug is not True:
-        now = datetime.now()
+        now = datetime.datetime.now()
         r = request.url
         with open('error.log', 'a') as f:
             current_timestamp = now.strftime("%d-%m-%Y %H:%M:%S")
