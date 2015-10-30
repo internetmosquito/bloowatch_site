@@ -1,37 +1,131 @@
-{% extends "_base.html" %}
-{% block content %}
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
 
-		<!-- MORE_INFOS -->
+	<title>Bloowatch | Try it for FREE</title>
+
+	<!-- Google Fonts -->
+	<link href='http://fonts.googleapis.com/css?family=Roboto:400,900,700,500,300,100' rel='stylesheet' type='text/css'>
+	<link href='http://fonts.googleapis.com/css?family=Raleway:400,600' rel='stylesheet' type='text/css'>
+
+	<!-- CSS Files -->
+	<link href="{{ url_for('static', filename='css/grid12.css') }}" rel="stylesheet" media="screen">
+	<link href="{{ url_for('static', filename='css/typography.css') }}" rel="stylesheet" media="screen">
+	<link href="{{ url_for('static', filename='css/main.css') }}" rel="stylesheet" media="screen">
+    <link href="{{ url_for('static', filename='css/alerts.css') }}" rel="stylesheet" media="screen">
+	<link href="{{ url_for('static', filename='css/opencoast-colors.css') }}" rel="stylesheet" media="screen">
+	<link href="{{ url_for('static', filename='css/material-design-iconic-font.css') }}" rel="stylesheet" media="screen">
+	<link href="{{ url_for('static', filename='css/respons.css') }}" rel="stylesheet" media="screen">
+	<link href="{{ url_for('static', filename='css/animate.css') }}" rel="stylesheet" media="screen">
+
+	<!-- Owl - Carousel -->
+	<link href="{{ url_for('static', filename='css/owl.carousel.css') }}" rel="stylesheet" media="screen">
+	<link href="{{ url_for('static', filename='css/owl.theme.css') }}" rel="stylesheet" media="screen">
+	<link href="{{ url_for('static', filename='css/owl.transitions.css') }}" rel="stylesheet" media="screen">
+
+	<!-- Modernizer -->
+	<script src="{{ url_for('static', filename='js/modernizr.custom.js') }}"></script>
+
+    <!-- Used to create Ajax requests -->
+    <script type=text/javascript>
+        $SCRIPT_ROOT = {{ request.script_root|tojson|safe }};
+    </script>
+
+    <!-- Google Analytics --->
+	<script>
+        (function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
+        (i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
+        m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
+        })(window,document,'script','//www.google-analytics.com/analytics.js','ga');
+
+        ga('create', 'UA-69339512-1', 'auto');
+        ga('send', 'pageview');
+
+	</script>
+  </head>
+ <body>
+	<div id="preloader_container">
+
+
+		<!-- PRELOADER -->
+		<header class="preloader_header">
+			<div class="preloader_loader">
+				<svg class="preloader_inner" width="60px" height="60px" viewBox="0 0 80 80">
+					<path class="preloader_loader_circlebg" d="M40,10C57.351,10,71,23.649,71,40.5S57.351,71,40.5,71 S10,57.351,10,40.5S23.649,10,40.5,10z"></path>
+					<path id="preloader_loader_circle" class="preloader_loader_circle" d="M40,10C57.351,10,71,23.649,71,40.5S57.351,71,40.5,71 S10,57.351,10,40.5S23.649,10,40.5,10z" style="stroke-dashoffset: 0px; stroke-dasharray: 192.6180419921875px;"></path>
+				</svg>
+			</div>
+		</header>
+		<!-- END OF PRELOADER -->
+
+		<!-- HERO -->
+		<section class="hero_fullscreen background_solid">
+
+			<!-- TOP NAVIGATION -->
+			<div class="container">
+				<div class="row">
+					<div class="col-xs-12 col-sm-12 col-md-12 col-lg-12 other">
+<!-- 						<a id="trigger-overlay" class="nav_slide_button nav-toggle" href="#"><span></span></a> -->
+					</div>
+				</div>
+			</div>
+			<!-- END OF TOP NAVIGATION -->
+
+			<!-- HERO IMAGE -->
+			<div class="container align-center" id="main_content">
+				<div class="content_container row">
+					<div class="col-xs-12 col-sm-12 col-md-12 col-lg-12 home_content">
+						<div>
+							<img src="{{ url_for('static', filename='img/logo22.png') }}" style="width:30%; height:30%" class="img_responsive">
+						</div>
+                        <h6 class="subline">The back-office solution for water sports.</h6>
+
+						<div class="home_devices">
+							<img src="{{ url_for('static', filename='img/macbook.png') }}" alt="" class="img_responsive home_macbook">
+							<img src="{{ url_for('static', filename='img/iphone.png') }}" alt="" class="img_responsive home_iphone">
+						</div>
+
+					</div>
+				</div>
+			</div>
+			<!-- END OF HERO IMAGE -->
+
+		</section>
+		<!-- END OF HERO -->
+
+        <!-- MORE_INFOS -->
 		<section id="more_info" class="subsection lighter_bg align-center">
 			<div class="container">
 				<div class="row">
 
 					<div class="col-xs-12 col-sm-4 col-md-4 col-lg-4">
 						<div class="iconbox content_anim1">
-							<i class="md-portrait md-3x sunlight"></i>
+                            <img src="{{ url_for('static', filename='img/agenda_icon.svg') }}" alt="" class="img_responsive">
 							<div class="iconbox_content">
 								<h5>Planning</h5>
-								<p>Supporting planning from activities requirements and context with weather integration.</p>
+								<p>Support the planning management based on the company requirements and the context and weather conditions.</p>
 							</div>
 						</div>
 					</div>
 
 					<div class="col-xs-12 col-sm-4 col-md-4 col-lg-4">
 						<div class="iconbox content_anim2">
-							<i class="md-trending-up md-3x sunlight"></i>
+							<img src="{{ url_for('static', filename='img/chat_icon.svg') }}" alt="" class="img_responsive">
 							<div class="iconbox_content">
 								<h5>Communication</h5>
-								<p>Delivering messages to selected groups with the most appropiate time, contents and channels.</p>
+								<p>Connect effectively with the staff and customers at the right time through the appropriate channel.</p>
 							</div>
 						</div>
 					</div>
 
 					<div class="col-xs-12 col-sm-4 col-md-4 col-lg-4">
 						<div class="iconbox content_anim3">
-							<i class="md-local-atm md-3x sunlight"></i>
+							<img src="{{ url_for('static', filename='img/coupon_icon.svg') }}" alt="" class="img_responsive">
 							<div class="iconbox_content">
 								<h5>Marketing & Sales</h5>
-								<p>Assisting the online marketing in gaining higher loyalty and bringing new customers up to the booking engine.</p>
+								<p>Boost the online marketing activities of the company towards higher loyalty and new bookings.</p>
 							</div>
 						</div>
 					</div>
@@ -39,12 +133,11 @@
 					<div class="col-xs-12 col-sm-12 col-md-12 col-lg-12">
 						<h3 class="newsletter_title">FIND MORE DETAIL ABOUT THE BLOOWATCH SOLUTION</h3>
 						<div class="subscribe content_anim4">
-							<form action="" method="" id="newsletter-form">
-                                {{ form.hidden_tag() }}
+							<form role="form" action="" method="post">
 								<div class="input-group">
 									<input type="email" name="email" class="newsletter-email form-control" placeholder="ENTER EMAIL ADDRESS">
 										<span class="input-group-btn">
-											<button value="Register" type="submit" class="btn btn-green waves-effect waves-light newsletter-submit">Get More Info</button>
+											<button type="submit"  class="btn btn-green waves-effect waves-light newsletter-submit">Get More Info</button>
 										</span>
 								</div>
                                 {% with success = get_flashed_messages(category_filter=["success"]) %}
@@ -78,8 +171,7 @@
 		</section>
 		<!-- END OF MORE_INFOS -->
 
-
-		<!-- FEATURES -->
+        <!-- FEATURES -->
 		<section class="subsection" id="features">
 			<div class="container">
 
@@ -92,7 +184,7 @@
 					</div>
 					<div class="col-xs-12 col-sm-6 col-md-6 col-lg-6 align-center content_anim8">
 						<video class="img_responsive" controls>
-							<source src="{{ url_for('static', filename='img/movie.mp4') }}" type="video/mp4">
+							<source src="https://dl.dropboxusercontent.com/u/16504598/movie.mp4" preload type="video/mp4">
 							Your browser does not support the video tag.
 						</video>
 						<!--<img src="assets/img/video-th.jpg" alt="" class="img_responsive">-->
@@ -103,8 +195,7 @@
 		</section>
 		<!-- END OF FEATURES -->
 
-		<!-- PLAN OFFERS -->
-
+        <!-- PLAN OFFERS -->
 		<section id="offers" class="subsection lighter_bg">
 			<div class="container">
                 <!--
@@ -186,7 +277,7 @@
 					<div class="col-xs-12 col-sm-12 col-md-12 col-lg-12 align-center">
 						<div class="intro content_anim13">
 							<h3 class="uppertxt">PACKED WITH <span class="sunlight">SPECIALIZED</span> FEATURES</h3>
-							<p class="offers_desc">We strive to offer you the most important features to help you grow your business as fast as possible, leveraging you from all the dull work that you do not like.</p>
+							<!--<p class="offers_desc">We strive to offer you the most important features to help you grow your business as fast as possible, leveraging you from all the dull work that you do not like.</p>-->
 						</div>
 					</div>
 				</div>
@@ -195,10 +286,10 @@
 					<!-- FEAT 1 -->
 					<div class="col-xs-6 col-sm-4 col-md-4 col-lg-4 align-center">
 						<div class="iconbox content_anim14">
-							<i class="md-extension md-2x"></i>
+                            <img src="{{ url_for('static', filename='img/crm_icon@34.svg') }}" alt="" class="img_responsive">
 							<div class="iconbox_content">
-								<h5>PERSONALIZED</h5>
-								<p>Personalized recommendations.<br>Automatic notifications to advise all your customers from their level and the conditions.</p>
+								<h5>CRM</h5>
+								<p>Organize your client to have direct access to profile details, history, contacts and statistics.</p>
 							</div>
 						</div>
 					</div>
@@ -206,10 +297,10 @@
 					<!-- FEAT 2 -->
 					<div class="col-xs-6 col-sm-4 col-md-4 col-lg-4 align-center">
 						<div class="iconbox content_anim15">
-							<i class="md-account-box md-2x"></i>
+							<img src="{{ url_for('static', filename='img/agenda_icon@34.svg') }}" alt="" class="img_responsive">
 							<div class="iconbox_content">
-								<h5>USER PROFILES</h5>
-								<p>Individual profiles.<br>All customers have their own profiles and settings to create the best water sports app experience possible.</p>
+								<h5>AGENDA</h5>
+								<p>Direct view on booked lessons, rental sessions, weather windows and other events.</p>
 							</div>
 						</div>
 					</div>
@@ -217,10 +308,10 @@
 					<!-- FEAT 3 -->
 					<div class="col-xs-6 col-sm-4 col-md-4 col-lg-4 align-center">
 						<div class="iconbox content_anim16">
-							<i class="md-group-add md-2x"></i>
+							<img src="{{ url_for('static', filename='img/multidevice_icon@34.svg') }}" alt="" class="img_responsive">
 							<div class="iconbox_content">
-								<h5>COMMUNITY</h5>
-								<p>The digital community.<br>Create a vibrant community around your business to foster customer´s fidelization and get new clients.</p>
+								<h5>MULTI CHANNEL</h5>
+								<p>Interact with your customers and staff all along their digital journey, being through the mobile and web app, social media or emails.</p>
 							</div>
 						</div>
 					</div>
@@ -230,10 +321,10 @@
 					<!-- FEAT 4 -->
 					<div class="col-xs-6 col-sm-4 col-md-4 col-lg-4 align-center">
 						<div class="iconbox content_anim17">
-							<i class="md-rotate-left md-2x"></i>
+							<img src="{{ url_for('static', filename='img/market_icon@34.svg') }}" alt="" class="img_responsive">
 							<div class="iconbox_content">
-								<h5>AFTER SESSION</h5>
-								<p>After session souvenir cards.<br>With all information, contents & sports data to understand & share what happened in the water.</p>
+								<h5>BOOKINGS</h5>
+								<p>Deliver personalized recommendations to better inform your clients and ease the registration with the online mobile and web booking.</p>
 							</div>
 						</div>
 					</div>
@@ -241,10 +332,10 @@
 					<!-- FEAT 5 -->
 					<div class="col-xs-6 col-sm-4 col-md-4 col-lg-4 align-center">
 						<div class="iconbox content_anim18">
-							<i class="md-history md-2x"></i>
+							<img src="{{ url_for('static', filename='img/community_icon@34.svg') }}" alt="" class="img_responsive">
 							<div class="iconbox_content">
-								<h5>THE APP TIMELINE</h5>
-								<p>The App Timeline.<br>Where all the information is accessed and commented.</p>
+								<h5>COMMUNITY</h5>
+								<p>Create a vibrant community around your business to foster customer's loyalty and attract new clients.</p>
 							</div>
 						</div>
 					</div>
@@ -252,10 +343,10 @@
 					<!-- FEAT 6 -->
 					<div class="col-xs-6 col-sm-4 col-md-4 col-lg-4 align-center">
 						<div class="iconbox content_anim19">
-							<i class="md-style md-2x"></i>
+							<img src="{{ url_for('static', filename='img/content_icon@34.svg') }}" alt="" class="img_responsive">
 							<div class="iconbox_content">
-								<h5>AUTO SESSION</h5>
-								<p>Automatic Session Cards.<br>Each session & services by the school can be targeted to appropriate customers through modern cards.</p>
+								<h5>CONTENTS</h5>
+								<p>Share high quality specialized contents such as photos, weather forecast and activity maps, or unique texts and comments.</p>
 							</div>
 						</div>
 					</div>
@@ -265,213 +356,7 @@
 		</section>
 		<!-- END OF PLAN OFFERS -->
 
-		<!-- SUBSCRIBE -->
-		<section class="subsection" style="padding-top:1rem;">
-			<div class="container">
-				<div class="row align-center">
-					<div class="col-xs-12 col-sm-12 col-md-12 col-lg-12">
-						<h3 class="newsletter_title">FIND MORE DETAIL ABOUT THE BLOOWATCH SOLUTION</h3>
-						<div class="subscribe content_anim4">
-							<form action="" method="" id="newsletter-form">
-                                {{ form.hidden_tag() }}
-								<div class="input-group">
-									<input type="email" name="email" class="newsletter-email form-control" placeholder="ENTER EMAIL ADDRESS">
-										<span class="input-group-btn">
-											<button value="Register" type="submit" class="btn btn-green waves-effect waves-light newsletter-submit">Get More Info</button>
-										</span>
-								</div>
-                                {% with success = get_flashed_messages(category_filter=["success"]) %}
-                                    {% if success %}
-                                    <div class="success">
-                                      <ul>
-                                        {%- for msg in success %}
-                                        <li><strong>Success!</strong>{{ msg }}</li>
-                                        {% endfor -%}
-                                      </ul>
-                                    </div>
-                                    {% endif %}
-                                {% endwith %}
-                                {% with errors = get_flashed_messages(category_filter=["error"]) %}
-                                    {% if errors %}
-                                    <div class="error">
-                                      <ul>
-                                        {%- for msg in errors %}
-                                        <li><strong>Error!</strong> {{ msg }}</li>
-                                        {% endfor -%}
-                                      </ul>
-                                    </div>
-                                    {% endif %}
-                                {% endwith %}
-							</form>
-						</div>
-					</div>
-				</div>
-			</div>
-		</section>
-		<!-- END OF SUBSCRIBE -->
-
-		<!-- REVIEWS -->
-		<!--<section id="reviews" class="subsection color_bg">
-			<div class="container">
-
-				<div class="row">
-					<div class="col-xs-12 col-sm-8 col-md-8 col-lg-8 col-sm-offset-2 col-md-offset-2 col-lg-offset-2 content_anim20">
-
-						<h3 class="section_title">Our Clients Love us</h3>
-
-						<div class="owl-carousel align-center">
-							<!-- REVIEW 1 -->
-							<!--<div class="single_review">
-								<img src="assets/img/review_01.png" alt="" class="img-circle">
-								<div class="review_content">
-									<h6>Fusce dapibus, tellus ac cursus commodo, tortor mauris condimentum. Duis mollis, est non commodo luctus, nisi erat.</h6>
-									<p>ESCUELA ASTURIANA DE SURF</p>
-								</div>
-							</div>
-							<!-- END OF REVIEW 1 -->
-
-							<!-- REVIEW 2 -->
-							<!--<div class="single_review">
-								<img src="assets/img/review_02.png" alt="" class="img-squared">
-								<div class="review_content">
-									<h6>Fusce dapibus, tellus ac cursus commodo, tortor mauris condimentum. Duis mollis, est non commodo luctus, nisi erat.</h6>
-									<p>SURFING SAN SEBASTIAN</p>
-								</div>
-							</div>
-							<!-- END OF REVIEW 2 -->
-
-							<!-- REVIEW 3 -->
-							<!--<div class="single_review">
-								<img src="assets/img/review_03.png" alt="" class="img-circle">
-								<div class="review_content">
-									<h6>Fusce dapibus, tellus ac cursus commodo, tortor mauris condimentum. Duis mollis, est non commodo luctus, nisi erat.</h6>
-									<p>ESCUELA ASTURIANA DE SURF</p>
-								</div>
-							</div>
-							<!-- END OF REVIEW 3 -->
-
-							<!-- REVIEW 4 -->
-							<!--<div class="single_review">
-								<img src="assets/img/review_04.png" alt="" class="img-squared">
-								<div class="review_content">
-									<h6>Fusce dapibus, tellus ac cursus commodo, tortor mauris condimentum. Duis mollis, est non commodo luctus, nisi erat.</h6>
-									<p>SURFING SAN SEBASTIAN</p>
-								</div>
-							</div>
-							<!-- END OF REVIEW 4 -->
-
-						<!--</div>
-					</div>
-				</div>
-
-			</div>
-		</section>-->
-		<!-- END OF REVIEWS -->
-
-		<!-- CUSTOMERS ID -->
-		<!--<section id="customersID" class="subsection">
-			<div class="container">
-				<div class="row">
-					<div class="col-xs-6 col-sm-4 col-md-2 col-lg-2 align-center reviews_logo content_anim21"><img src="assets/img//logo1.png" alt=""></div>
-					<div class="col-xs-6 col-sm-4 col-md-2 col-lg-2 align-center reviews_logo content_anim22"><img src="assets/img/logo2.png" alt=""></div>
-					<div class="col-xs-6 col-sm-4 col-md-2 col-lg-2 align-center reviews_logo content_anim23"><img src="assets/img/logo3.png" alt=""></div>
-					<div class="col-xs-6 col-sm-4 col-md-2 col-lg-2 align-center reviews_logo content_anim24"><img src="assets/img/logo4.png" alt=""></div>
-					<div class="col-xs-6 col-sm-4 col-md-2 col-lg-2 align-center reviews_logo content_anim25"><img src="assets/img/logo5.png" alt=""></div>
-					<div class="col-xs-6 col-sm-4 col-md-2 col-lg-2 align-center reviews_logo content_anim26"><img src="assets/img/logo6.png" alt=""></div>
-				</div>
-			</div>
-		</section>-->
-		<!-- END OF CUSTOMERS ID -->
-
-
-		<!-- FAQ -->
-        <!--
-		<section id="faq" class="subsection color_bg">
-			<div class="container">
-				<div class="row">
-					<div class="col-xs-12 col-sm-12 col-md-12 col-lg-12 align-center content_anim27">
-						<div class="intro">
-							<h3 class="section_title" style="margin-bottom:1rem;">Frequently Asked Questions</h3>
-							<p>Got questions? We have answers.</p>
-						</div>
-					</div>
-				</div>
-
-				<div class="row align-left content_anim28">
-					<!-- QUESTION 1 -->
-        <!--
-					<div class="col-xs-12 col-sm-6 col-md-6 col-lg-6">
-						<div class="iconbox content_anim1">
-							<h5>How does the free trial work?</h5>
-							<p>You can use the free trial to test the app for 30 days (you can even extend your trial - just contact our sales staff directly to request an extension). The free trial includes 30 days of access to all of our funtionalities so you can start working straight away.
-							</p>
-						</div>
-					</div>
-					<!-- END OF QUESTION 1 -->
-
-					<!-- QUESTION 2 -->
-        <!--
-					<div class="col-xs-12 col-sm-6 col-md-6 col-lg-6">
-						<div class="iconbox content_anim1">
-							<h5>Do I need to choose plan now?</h5>
-							<p>No need, you can simply start using the free trial and once it expires then you can must select a plan if you want to continue using the product.</p>
-						</div>
-					</div>
-					<!-- END OF QUESTION 2 -->
-    <!--
-				</div>
-
-				<div class="row align-left content_anim29">
-					<!-- QUESTION 3 -->
-    <!--
-					<div class="col-xs-12 col-sm-6 col-md-6 col-lg-6">
-						<div class="iconbox content_anim1">
-							<h5>Can I switch plans later?</h5>
-							<p>You can change from one plan to another at any time free of charge. Whenever you think you need an extra set of features or you need to swtich off some of your current set of features, simply access your dashboard and change your plan.</p>
-						</div>
-					</div>
-					<!-- END OF QUESTION 3 -->
-
-					<!-- QUESTION 4 -->
-        <!--
-					<div class="col-xs-12 col-sm-6 col-md-6 col-lg-6">
-						<div class="iconbox content_anim1">
-							<h5>What payment types do you accept?</h5>
-							<p>We accept traditional payment methods, like bank transfers, credit cards and more modern alternatives like PayPal and Skrill.</p>
-						</div>
-					</div>
-					<!-- END OF QUESTION 4 -->
-    <!--
-				</div>
-
-				<div class="row align-left content_anim30">
-					<!-- QUESTION 5 -->
-        <!--
-					<div class="col-xs-12 col-sm-6 col-md-6 col-lg-6">
-						<div class="iconbox content_anim1">
-							<h5>What is SaaS?</h5>
-							<p>SaaS stands for Software as a Service, this is the model used by Bloowatch that is delivered as a service via Internet. It mainly focuses on dropping operational expenses for companies using those services.</p>
-						</div>
-					</div>
-					<!-- END OF QUESTION 5 -->
-
-					<!-- QUESTION 6 -->
-        <!--
-					<div class="col-xs-12 col-sm-6 col-md-6 col-lg-6">
-						<div class="iconbox content_anim1">
-							<h5>What are the benefits of SaaS?</h5>
-							<p>The main benefit of SaaS is cost reduction, since you only pay for the required application that you require. Another clear benefit of using SaaS is the standardization and homogenization of the delivery and release management process, since all of these is done automatically without clients noticing it.</p>
-						</div>
-					</div>
-					<!-- END OF QUESTION 6 -->
-    <!--
-				</div>
-
-			</div>
-		</section>
-		<!-- END OF FAQ -->
-
-		<!-- FOOTER -->
+        <!-- FOOTER -->
 		<section id="footer" class="subsection">
 			<div class="container">
 				<div class="row">
@@ -509,7 +394,28 @@
 		</section>
 		<!-- END OF FOOTER -->
 
-	</div>
-	<!-- END OF PRELOADER -->
 
-{% endblock %}
+	</div>
+    <!-- END OF PRELOADER -->
+
+    <!-- Click analytics -->
+    <a title="Real Time Analytics" href="http://clicky.com/100889619"><img alt="Real Time Analytics" src="//static.getclicky.com/media/links/badge.gif" border="0" /></a>
+	<script src="//static.getclicky.com/js" type="text/javascript"></script>
+	<script type="text/javascript">try{ clicky.init(100889619); }catch(e){}</script>
+	<noscript><p><img alt="Clicky" width="1" height="1" src="//in.getclicky.com/100889619ns.gif" /></p></noscript>
+
+	<!-- JAVASCRIPT PLUGINS COMES HERE -->
+	<script src="{{ url_for('static', filename='js/jquery-2.1.3.min.js') }}"></script>
+	<script src="{{ url_for('static', filename='js/jquery.easing.min.js') }}"></script>
+	<script src="{{ url_for('static', filename='js/jquery.cycle.all.min.js') }}"></script>
+	<script src="{{ url_for('static', filename='js/materialize.js') }}"></script>
+	<script src="{{ url_for('static', filename='js/classie.js') }}"></script>
+	<script src="{{ url_for('static', filename='js/pathLoader.js') }}"></script>
+	<script src="{{ url_for('static', filename='js/preloader.js') }}"></script>
+	<script src="{{ url_for('static', filename='js/retina.js') }}"></script>
+	<script src="{{ url_for('static', filename='js/waypoints.min.js') }}"></script>
+	<script src="{{ url_for('static', filename='js/owl.carousel.js') }}"></script>
+	<script src="{{ url_for('static', filename='js/main.js') }}"></script>
+</body>
+</html>
+</html>

@@ -1,31 +1,46 @@
-from flask import Flask, redirect, flash, redirect, render_template, \
-    request, url_for, make_response, jsonify, session
+# import flask
+from flask import Flask, render_template, request, flash, redirect, url_for
 from flask.ext.sqlalchemy import SQLAlchemy
 from sqlalchemy.exc import IntegrityError
 
 from forms import RegisterForm
 import re
-import datetime
 import os
 
+import logging
+from logging import Formatter, FileHandler
+from datetime import datetime
 
-'''@app.route('/')
-def main():
-    return 'Hello World!'
-'''
+# initilize flask
+# app = Flask(__name__)
 
 #######################
 #### configuration ####
 #######################
 
 app = Flask(__name__)
+#Setup the logger
+LOGGER = logging.getLogger('opencoast_streamer_logger')
+file_handler = FileHandler('opencoast_streamer.log')
+handler = logging.StreamHandler()
+file_handler.setFormatter(Formatter(
+        '%(thread)d %(asctime)s %(levelname)s: %(message)s '
+        '[in %(pathname)s:%(lineno)d]'
+))
+handler.setFormatter(Formatter(
+        '%(thread)d %(asctime)s %(levelname)s: %(message)s '
+        '[in %(pathname)s:%(lineno)d]'
+))
+LOGGER.addHandler(file_handler)
+LOGGER.addHandler(handler)
+LOGGER.setLevel(logging.DEBUG)
 app.config.from_pyfile('_config.py')
 db = SQLAlchemy(app)
-
 
 ##########################
 #### helper functions ####
 ##########################
+
 
 def valid_mail(email):
     match = re.match(r'^[a-zA-Z0-9._%-+]+@[a-zA-Z0-9._%-]+.[a-zA-Z]{2,6}$', str(email))
@@ -40,84 +55,46 @@ def valid_mail(email):
 
 @app.route('/', methods=['GET', 'POST'])
 def main():
-    if request.args and 'email' in request.args:
-        session['user_email'] = request.args['email']
-        return redirect(url_for('register'))
-    else:
-        form = RegisterForm()
-    return render_template('index.html',
-                           title="Register",
-                           form=form)
-    #redirect(url_for('_base'))
-
-
-@app.route('/register/', methods=['GET', 'POST'])
-def register():
-    error = None
-    email = session['user_email']
-    session.clear()
-    try:
-        form = RegisterForm(email=email)
-        if form.email.data and valid_mail(form.email.data):
-            from models import RegisteredMail
-            new_rm = RegisteredMail(
-                form.email.data,
-                datetime.datetime.utcnow(),
-            )
-            try:
-                db.session.add(new_rm)
-                db.session.commit()
-                flash('Thanks for subscribing to Bloowatch, we will keep you posted!', 'success')
+    if request.method == 'POST':
+        user_email = str(request.form['email'])
+        try:
+            form = RegisterForm(email=user_email)
+            if form.email.data and valid_mail(form.email.data):
+                from models import RegisteredMail
+                new_rm = RegisteredMail(
+                    form.email.data,
+                    datetime.utcnow(),
+                )
+                try:
+                    db.session.add(new_rm)
+                    db.session.commit()
+                    flash('Thanks for subscribing to Bloowatch, we will keep you posted!', 'success')
+                    LOGGER.info('User registered correctly, email was ' + user_email)
+                    return redirect(url_for('main'))
+                except IntegrityError:
+                    flash('Provided email is already used, please use a different one', 'error')
+                    LOGGER.error('User email provided already exists, email was ' + user_email)
+                    return redirect(url_for('main'))
+            else:
+                flash('Provided email is invalid, please use valid one', 'error')
+                LOGGER.error('Email provided is invalidad. It was ' + user_email)
                 return redirect(url_for('main'))
-            except IntegrityError:
-                flash('Provided email is already used, please use a different one', 'error')
-                return redirect(url_for('main'))
-        else:
-            flash('Provided email is invalid, please use valid one', 'error')
-            return redirect(url_for('main'))
-    except Exception as e:
-        print e
-        return render_template('index.html', form=form, error=error)
+        except Exception as e:
+            print e
+            flash('Unexpected error occured, please try again later', 'error')
+            LOGGER.error('Unexpected error occured')
+            return render_template('index.html', form=form)
+    return render_template('index.html')
 
-################
-#### routes ####
-################
-
-@app.route('/api/v1/registered_mails/')
-def api_registered_mails():
-    from models import RegisteredMail
-    results = db.session.query(RegisteredMail).limit(10).offset(0).all()
-    json_results = []
-    for result in results:
-        data = {
-            'registered_mail_id': result.registered_id,
-            'email': result.email,
-            'creation date': str(result.creation_date)
-        }
-        json_results.append(data)
-    return jsonify(items=json_results)
-
-@app.route('/api/v1/registered_mails/<int:registered_id>')
-def registered_mail(registered_id):
-    from models import RegisteredMail
-    result = db.session.query(RegisteredMail).filter_by(registered_id=registered_id).first()
-    if result:
-        result = {
-            'registered_mail_id': result.registered_id,
-            'email': result.email,
-            'creation date': str(result.creation_date)
-        }
-        code = 200
-    else:
-        result = {'error': 'Specified registered mail does not exist'}
-        code = 404
-    return make_response(jsonify(result), code)
+# run the server
+# if __name__ == '__main__':
+#     app.run(debug=True)
 
 # Define views for errors
 @app.errorhandler(404)
 def not_found(error):
     if app.debug is not True:
-        now = datetime.datetime.now()
+        now = datetime.now()
         r = request.url
         with open('error.log', 'a') as f:
             current_timestamp = now.strftime("%d-%m-%Y %H:%M:%S")
@@ -130,7 +107,7 @@ def not_found(error):
 def internal_error(error):
     db.session.rollback()
     if app.debug is not True:
-        now = datetime.datetime.now()
+        now = datetime.now()
         r = request.url
         with open('error.log', 'a') as f:
             current_timestamp = now.strftime("%d-%m-%Y %H:%M:%S")
@@ -141,5 +118,3 @@ def internal_error(error):
 if __name__ == '__main__':
     port = int(os.environ.get('PORT', 5000))
     app.run(host='0.0.0.0', port=port)
-
-

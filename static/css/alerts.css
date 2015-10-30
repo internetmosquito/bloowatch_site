@@ -21,3 +21,142 @@
     color: #D8000C;
     background-color: #FFBABA;
 }
+
+/* Phone mode */
+@media screen and (max-device-width : 768px){
+        .subscribe .newsletter-email {
+        font-size: 0.6rem;
+        height: 34px;
+        border: none;
+        -webkit-border-radius: 17px 0 0 17px;
+        -moz-border-radius: 17px 0 0 17px;
+        border-radius: 17px 0 0 17px;
+        color: #565d67;
+        padding-left: 1.5rem;
+        box-shadow: none;
+        border: 1px solid #4cd964;
+        background-color: #fff;
+        min-width: 25%;
+        outline: none;
+        display: inline-block;
+    }
+
+    .subscribe .newsletter-submit {
+        font-size: 0.6rem;
+        font-weight: 150;
+        height: 34px;
+        padding: 0 1.5rem 0 1.5rem;
+        color: #FFF;
+        background-color: #4cd964;
+        border: 1px solid #4cd964;
+        -webkit-border-radius: 0 17px 17px 0;
+        -moz-border-radius: 0 17px 17px 0;
+        border-radius: 0 17px 17px 0;
+        outline: none;
+        box-shadow: none;
+        display: inline-block;
+        vertical-align: baseline;
+    }
+
+    .newsletter_title {
+        text-transform: uppercase;
+        font-weight: 100;
+        color: #565d67;
+        font-size: 0.75rem;
+        margin-bottom: 1rem;
+        margin-top: 3rem;
+    }
+}
+
+
+/* Tablet portrait mode */
+@media screen and (min-device-width : 768px) and (orientation : portrait){
+    .subscribe .newsletter-email {
+        font-size: 1.26rem;
+        height: 68px;
+        border: none;
+        -webkit-border-radius: 34px 0 0 34px;
+        -moz-border-radius: 34px 0 0 34px;
+        border-radius: 34px 0 0 34px;
+        color: #565d67;
+        padding-left: 3rem;
+        box-shadow: none;
+        border: 1px solid #4cd964;
+        background-color: #fff;
+        min-width: 50%;
+        outline: none;
+        display: inline-block;
+    }
+
+    .subscribe .newsletter-submit {
+        font-size: 1.26rem;
+        font-weight: 400;
+        height: 68px;
+        padding: 0 3rem 0 3rem;
+        color: #FFF;
+        background-color: #4cd964;
+        border: 1px solid #4cd964;
+        -webkit-border-radius: 0 34px 34px 0;
+        -moz-border-radius: 0 34px 34px 0;
+        border-radius: 0 34px 34px 0;
+        outline: none;
+        box-shadow: none;
+        display: inline-block;
+        vertical-align: baseline;
+    }
+    .newsletter_title {
+        text-transform: uppercase;
+        font-weight: 200;
+        color: #565d67;
+        font-size: 1.52rem;
+        margin-bottom: 2rem;
+        margin-top: 6rem;
+    }
+}
+
+
+/* Tablet landscape & Desktop mode */
+@media screen and (min-device-width : 768px) and (orientation : landscape){
+        .subscribe .newsletter-email {
+        font-size: 1.26rem;
+        height: 68px;
+        border: none;
+        -webkit-border-radius: 34px 0 0 34px;
+        -moz-border-radius: 34px 0 0 34px;
+        border-radius: 34px 0 0 34px;
+        color: #565d67;
+        padding-left: 3rem;
+        box-shadow: none;
+        border: 1px solid #4cd964;
+        background-color: #fff;
+        min-width: 50%;
+        outline: none;
+        display: inline-block;
+    }
+
+    .subscribe .newsletter-submit {
+        font-size: 1.26rem;
+        font-weight: 400;
+        height: 68px;
+        padding: 0 3rem 0 3rem;
+        color: #FFF;
+        background-color: #4cd964;
+        border: 1px solid #4cd964;
+        -webkit-border-radius: 0 34px 34px 0;
+        -moz-border-radius: 0 34px 34px 0;
+        border-radius: 0 34px 34px 0;
+        outline: none;
+        box-shadow: none;
+        display: inline-block;
+        vertical-align: baseline;
+    }
+    .newsletter_title {
+        text-transform: uppercase;
+        font-weight: 200;
+        color: #565d67;
+        font-size: 1.52rem;
+        margin-bottom: 2rem;
+        margin-top: 6rem;
+    }
+}
+
