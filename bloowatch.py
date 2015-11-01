@@ -1,15 +1,16 @@
 # import flask
-from flask import Flask, render_template, request, flash, redirect, url_for
+from flask import Flask, render_template, request
 from flask.ext.sqlalchemy import SQLAlchemy
 from sqlalchemy.exc import IntegrityError
 
-from forms import RegisterForm
+from _config import get_var
 import re
 import os
 import json
 import logging
 from logging import Formatter, FileHandler
 import datetime
+from MailUtils import MailUtils
 
 
 #######################
@@ -35,6 +36,10 @@ LOGGER.setLevel(logging.DEBUG)
 
 app.config.from_pyfile('_config.py')
 db = SQLAlchemy(app)
+mailer_settings = ('MAIL_FROM', 'MAIL_TO')
+mailer_values = dict(zip(mailer_settings, map(get_var, mailer_settings)))
+#Create an instance to the MailerUtils
+mailer = MailUtils(LOGGER)
 
 ##########################
 #### helper functions ####
@@ -47,6 +52,13 @@ def valid_mail(email):
         return True
     else:
         return False
+
+
+def send_subscription_confirmation(to_whom):
+    LOGGER.debug('Sending subscription confirmation message to user ' + to_whom)
+    subject = 'Subscribed to Bloowatch newsletter successful'
+    mailer.send_subscription_confirmation(to_whom, subject)
+
 
 ##########################
 #######  routes  #########
@@ -74,6 +86,7 @@ def register():
                     db.session.commit()
                     LOGGER.info('User registered correctly, email was ' + user_email)
                     message = 'Thanks for subscribing to Bloowatch, we will keep you posted!'
+                    send_subscription_confirmation(user_email)
                     return json.dumps({'status': 'OK', 'message': message})
                 except IntegrityError as e:
                     LOGGER.error('User email provided already exists, email was ' + user_email + ' More info'
