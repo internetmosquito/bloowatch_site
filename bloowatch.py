@@ -82,11 +82,11 @@ def register():
                     datetime.datetime.utcnow(),
                 )
                 try:
+                    send_subscription_confirmation(user_email)
                     db.session.add(new_rm)
                     db.session.commit()
                     LOGGER.info('User registered correctly, email was ' + user_email)
                     message = 'Thanks for subscribing to Bloowatch, we will keep you posted!'
-                    send_subscription_confirmation(user_email)
                     return json.dumps({'status': 'OK', 'message': message})
                 except IntegrityError as e:
                     LOGGER.error('User email provided already exists, email was ' + user_email + ' More info'
@@ -103,6 +103,11 @@ def register():
             message = 'Unexpected error occured, Please try again later.'
             return json.dumps({'status': 'ERROR', 'message': message})
 
+@app.route('/unsubscribe', methods=['GET'])
+def unsubscribe():
+    if request.method == 'GET':
+        user_email = request.args.get('user_email', 0, type=str)
+        return render_template('unsubscribe_confirmation.html', user_email=user_email)
 
 # Define views for errors
 @app.errorhandler(404)

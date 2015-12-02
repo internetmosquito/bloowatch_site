@@ -1,9 +1,160 @@
-{% extends "_base.html" %}
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
 
-{% block content %}
+	<title>Bloowatch | Try it for FREE</title>
 
-<h1>404</h1>
-<p>Believe it or not, you've found a dead link!!! A special team of Black Mesa scientists are investigating right now.</p>
-<p>In the meantime, you can <a href="{{url_for('users.login')}}"> go back home</a></p>
+    <!-- Favincon -->
+    <link rel="shortcut icon" type="image/x-icon" href="{{ url_for('static', filename='img/favicon.ico') }}">
 
-{% endblock %}
+	<!-- Google Fonts -->
+	<link href='http://fonts.googleapis.com/css?family=Roboto:400,900,700,500,300,100' rel='stylesheet' type='text/css'>
+	<link href='http://fonts.googleapis.com/css?family=Raleway:400,600' rel='stylesheet' type='text/css'>
+
+	<!-- CSS Files -->
+	<link href="{{ url_for('static', filename='css/grid12.css') }}" rel="stylesheet" media="screen">
+	<link href="{{ url_for('static', filename='css/typography.css') }}" rel="stylesheet" media="screen">
+	<link href="{{ url_for('static', filename='css/main.css') }}" rel="stylesheet" media="screen">
+    <link href="{{ url_for('static', filename='css/alerts.css') }}" rel="stylesheet" media="screen">
+	<link href="{{ url_for('static', filename='css/opencoast-colors.css') }}" rel="stylesheet" media="screen">
+	<link href="{{ url_for('static', filename='css/material-design-iconic-font.css') }}" rel="stylesheet" media="screen">
+	<link href="{{ url_for('static', filename='css/respons.css') }}" rel="stylesheet" media="screen">
+	<link href="{{ url_for('static', filename='css/animate.css') }}" rel="stylesheet" media="screen">
+
+	<!-- Owl - Carousel -->
+	<link href="{{ url_for('static', filename='css/owl.carousel.css') }}" rel="stylesheet" media="screen">
+	<link href="{{ url_for('static', filename='css/owl.theme.css') }}" rel="stylesheet" media="screen">
+	<link href="{{ url_for('static', filename='css/owl.transitions.css') }}" rel="stylesheet" media="screen">
+
+	<!-- Modernizer -->
+	<script src="{{ url_for('static', filename='js/modernizr.custom.js') }}"></script>
+
+    <!-- Used to create Ajax requests -->
+    <script type=text/javascript>
+        $SCRIPT_ROOT = {{ request.script_root|tojson|safe }};
+    </script>
+
+    <!-- Google Analytics --->
+	<script>
+        (function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
+        (i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
+        m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
+        })(window,document,'script','//www.google-analytics.com/analytics.js','ga');
+
+        ga('create', 'UA-69339512-1', 'auto');
+        ga('send', 'pageview');
+
+	</script>
+  </head>
+ <body>
+	<div id="preloader_container">
+
+
+		<!-- PRELOADER -->
+		<header class="preloader_header">
+			<div class="preloader_loader">
+				<svg class="preloader_inner" width="60px" height="60px" viewBox="0 0 80 80">
+					<path class="preloader_loader_circlebg" d="M40,10C57.351,10,71,23.649,71,40.5S57.351,71,40.5,71 S10,57.351,10,40.5S23.649,10,40.5,10z"></path>
+					<path id="preloader_loader_circle" class="preloader_loader_circle" d="M40,10C57.351,10,71,23.649,71,40.5S57.351,71,40.5,71 S10,57.351,10,40.5S23.649,10,40.5,10z" style="stroke-dashoffset: 0px; stroke-dasharray: 192.6180419921875px;"></path>
+				</svg>
+			</div>
+		</header>
+		<!-- END OF PRELOADER -->
+
+		<!-- HERO -->
+		<section class="hero_fullscreen background_solid">
+
+			<!-- TOP NAVIGATION -->
+			<div class="container">
+				<div class="row">
+					<div class="col-xs-12 col-sm-12 col-md-12 col-lg-12 other">
+					</div>
+				</div>
+			</div>
+			<!-- END OF TOP NAVIGATION -->
+
+			<!-- HERO IMAGE -->
+			<div class="container align-center" id="main_content">
+				<div class="content_container row">
+					<div class="col-xs-12 col-sm-12 col-md-12 col-lg-12 home_content">
+						<div>
+							<img src="{{ url_for('static', filename='img/logo22.png') }}" style="width:30%; height:30%" class="img_responsive">
+						</div>
+                        <h6 class="subline">The back-office solution for water sports.</h6>
+					</div>
+				</div>
+			</div>
+			<!-- END OF HERO IMAGE -->
+
+		</section>
+		<!-- END OF HERO -->
+
+        <!-- MORE_INFOS -->
+		<section id="more_info" class="subsection lighter_bg align-center">
+			<div class="container">
+				<div class="row">
+                    <h1>404</h1>
+                    <p>Believe it or not, you've found a dead link!!! A special team of is investigating this right now.</p>
+				</div>
+			</div>
+		</section>
+		<!-- END OF MORE_INFOS -->
+
+        <!-- FOOTER -->
+		<section id="footer" class="subsection">
+			<div class="container">
+				<div class="row">
+					<div class="col-xs-12 col-sm-12 col-md-12 col-lg-12 other">
+						<p class="inner">
+
+                                <a href="https://twitter.com/bloowatch">
+                                    <img src="{{ url_for('static', filename='img/twitter.png') }}" alt="">
+                                </a>|
+
+                                <a href="https://www.facebook.com/Bloowatch-822033957917800/">
+                                    <img src="{{ url_for('static', filename='img/facebook.png') }}" alt="">
+                                </a>
+
+
+                                |
+                                <!--<a href="">Press</a>|-->
+                                <a href="mailto:info@bloowatch.com">
+                                    <img src="{{ url_for('static', filename='img/mail.png') }}" alt="">
+                                </a>
+
+
+							<!--<a href="">Support</a>|
+							<a href="">Privacy Policy</a>-->
+						</p>
+
+						<p class="float-right inner visible-lg visible-md">
+                            <a href="skype:oduperray?userinfo">
+                                <img src="{{ url_for('static', filename='img/skype-with-circle.png') }}" alt="">
+					        </a>
+                            Call us&nbsp;<strong>+34.681.211.532</strong></p>
+					</div>
+				</div>
+			</div>
+		</section>
+		<!-- END OF FOOTER -->
+
+
+	</div>
+    <!-- END OF PRELOADER -->
+
+	<!-- JAVASCRIPT PLUGINS COMES HERE -->
+	<script src="{{ url_for('static', filename='js/jquery-2.1.3.min.js') }}"></script>
+	<script src="{{ url_for('static', filename='js/jquery.easing.min.js') }}"></script>
+	<script src="{{ url_for('static', filename='js/jquery.cycle.all.min.js') }}"></script>
+	<script src="{{ url_for('static', filename='js/materialize.js') }}"></script>
+	<script src="{{ url_for('static', filename='js/classie.js') }}"></script>
+	<script src="{{ url_for('static', filename='js/pathLoader.js') }}"></script>
+	<script src="{{ url_for('static', filename='js/preloader.js') }}"></script>
+	<script src="{{ url_for('static', filename='js/retina.js') }}"></script>
+	<script src="{{ url_for('static', filename='js/waypoints.min.js') }}"></script>
+	<script src="{{ url_for('static', filename='js/owl.carousel.js') }}"></script>
+	<script src="{{ url_for('static', filename='js/main.js') }}"></script>
+ </body>
+</html>

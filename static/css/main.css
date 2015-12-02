@@ -637,7 +637,25 @@ span.input-group-btn { display: inline-block;}
 #plan_B { border-color: #3590CC;}
 #plan_C { border-color: #0F71B8;}
 
-.double { margin: 60px auto;}
+
+/* Phone mode */
+@media screen and (max-device-width : 768px){
+    .double { margin: 30px auto;}
+}
+
+
+/* Tablet portrait mode */
+@media screen and (min-device-width : 768px) and (orientation : portrait){
+    .double { margin: 60px auto;}
+
+}
+
+/* Tablet landscape & Desktop mode */
+@media screen and (min-device-width : 768px) and (orientation : landscape){
+    .double { margin: 90px auto;}
+}
+
+
 .simple { margin: 30px auto;}
 
 #faq {padding-bottom: 8rem;}

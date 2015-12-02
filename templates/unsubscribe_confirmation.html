@@ -70,6 +70,7 @@
 			<div class="container">
 				<div class="row">
 					<div class="col-xs-12 col-sm-12 col-md-12 col-lg-12 other">
+<!-- 						<a id="trigger-overlay" class="nav_slide_button nav-toggle" href="#"><span></span></a> -->
 					</div>
 				</div>
 			</div>
@@ -95,8 +96,7 @@
 		<section id="more_info" class="subsection lighter_bg align-center">
 			<div class="container">
 				<div class="row">
-                    <h1>500</h1>
-                    <p>Server crashed! We're running in circles trying to fix it, stay tuned!</p>
+                    <p>Hey! {{ user_email }}, you have been successfully removed from our newsletter. We will miss you!</p>
 				</div>
 			</div>
 		</section>
@@ -156,5 +156,6 @@
 	<script src="{{ url_for('static', filename='js/waypoints.min.js') }}"></script>
 	<script src="{{ url_for('static', filename='js/owl.carousel.js') }}"></script>
 	<script src="{{ url_for('static', filename='js/main.js') }}"></script>
- </body>
+</body>
+</html>
 </html>

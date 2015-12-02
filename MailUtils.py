@@ -21,13 +21,6 @@ class MailUtils():
             self.logger = logger
             _mail_settings = ('MAIL_SERVER', 'MAIL_PORT', 'MAIL_FROM', 'MAIL_USER', 'MAIL_PASSWORD')
             self._mail_values = dict(zip(_mail_settings, map(get_var, _mail_settings)))
-            try:
-                self.server = smtplib.SMTP_SSL(self._mail_values['MAIL_SERVER'], self._mail_values['MAIL_PORT'])
-                self.server.ehlo()
-                # self.server.starttls()
-                self.server.login(self._mail_values['MAIL_USER'], self._mail_values['MAIL_PASSWORD'])
-            except (SMTPConnectError, SMTPHeloError) as e:
-                self.logger.error('An error occurred trying to setup SMTP agent to send mails. More info ' + repr(e))
 
     def setup(self):
         """
@@ -40,6 +33,7 @@ class MailUtils():
             self.server.ehlo()
             # self.server.starttls()
             self.server.login(self._mail_values['MAIL_USER'], self._mail_values['MAIL_PASSWORD'])
+            self.logger.info('Connected and logged in to mail server correctly!')
             return True
         except (SMTPConnectError, SMTPHeloError) as e:
             self.logger.error('An error occurred trying to setup SMTP agent to send mails. More info ' + repr(e))
@@ -54,27 +48,27 @@ class MailUtils():
         :include_ts: Specifies if a timestamp should be included along the text message
         :text: The text message
         """
-        if not self.__check_connection():
-            self.logger.info('Trying to reconnect to server')
-            self.setup()
-        else:
-            try:
-                message = ''
-                if include_ts:
-                    i = datetime.datetime.now()
-                    message += '[%s] ' % i.isoformat()
-                message += text
-                body = string.join((
-                    "From: %s" % from_addr,
-                    "To: %s" % to_addr,
-                    "Subject: %s" % subject,
-                    "",
-                    message
-                ), "\r\n")
-                self.server.sendmail(from_addr, [to_addr], body)
-                self.logger.info('Sent mail correctly!')
-            except SMTPServerDisconnected:
-                self.logger.info('Could not send mail, looks like server disconnected us!')
+        self.logger.debug('Trying to connect to server')
+        self.setup()
+        self.logger.debug('Connected to mail server successfully, sending message...')
+        try:
+            message = ''
+            if include_ts:
+                i = datetime.datetime.now()
+                message += '[%s] ' % i.isoformat()
+            message += text
+            body = string.join((
+                "From: %s" % from_addr,
+                "To: %s" % to_addr,
+                "Subject: %s" % subject,
+                "",
+                message
+            ), "\r\n")
+            self.server.sendmail(from_addr, [to_addr], body)
+            self.logger.info('Sent mail correctly!')
+            self.server.quit()
+        except SMTPServerDisconnected:
+            self.logger.info('Could not send mail, looks like server disconnected us!')
 
     def send_subscription_confirmation(self, to_addr, subject):
         """
@@ -82,33 +76,33 @@ class MailUtils():
         :to_addr: The to address to be used when sending the message
         :subject: The subject for the message
         """
-        if not self.__check_connection():
-            self.logger.info('Trying to reconnect to server')
-            self.setup()
-        else:
-            try:
-                # Create message container - the correct MIME type is multipart/alternative here!
-                message = MIMEMultipart('alternative')
-                message['subject'] = subject
-                message['To'] = to_addr
-                message['From'] = self._mail_values['MAIL_FROM']
-                message.preamble = """
+        self.logger.debug('Trying to connect to server')
+        self.setup()
+        self.logger.debug('Connected to mail server successfully, sending message...')
+        try:
+            # Create message container - the correct MIME type is multipart/alternative here!
+            message = MIMEMultipart('alternative')
+            message['subject'] = subject
+            message['To'] = to_addr
+            message['From'] = self._mail_values['MAIL_FROM']
+            message.preamble = """
                     Your mail reader does not support the report format.
                     Please visit us <a href="http://bloowatch.com">online</a>!"""
-                html = render_template('subscription.html', user_email=to_addr)
-                # print html
+            html = render_template('subscription.html', user_email=to_addr)
+            # print html
 
-                # Record the MIME type text/html.
-                html_body = MIMEText(html, 'html')
+            # Record the MIME type text/html.
+            html_body = MIMEText(html, 'html')
 
-                # Attach parts into message container.
-                # According to RFC 2046, the last part of a multipart message, in this case
-                # the HTML message, is best and preferred.
-                message.attach(html_body)
-                self.server.sendmail(self._mail_values['MAIL_FROM'], to_addr, message.as_string())
-                self.logger.info('Sent subscription mail correctly!')
-            except SMTPServerDisconnected:
-                self.logger.info('Could not send mail, looks like server disconnected us!')
+            # Attach parts into message container.
+            # According to RFC 2046, the last part of a multipart message, in this case
+            # the HTML message, is best and preferred.
+            message.attach(html_body)
+            self.server.sendmail(self._mail_values['MAIL_FROM'], to_addr, message.as_string())
+            self.logger.info('Sent subscription mail correctly!')
+            self.server.quit()
+        except SMTPServerDisconnected:
+            self.logger.info('Could not send mail, looks like server disconnected us!')
 
     def __check_connection(self):
         """
