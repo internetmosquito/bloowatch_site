@@ -14,16 +14,16 @@ DATABASE_PATH = os.path.join(basedir, DATABASE)
 # the database uri
 SQLALCHEMY_DATABASE_URI = 'sqlite:///' + DATABASE_PATH
 
-MAIL_SERVER = 'smtp.xxx.com'
+MAIL_SERVER = 'smtp.zoho.com'
 
 MAIL_PORT = 465
 
-MAIL_USER = 'info@xxx.com'
+MAIL_USER = 'info@bloowatch.com'
 
-MAIL_FROM = 'info@xxx.com'
+MAIL_FROM = 'info@bloowatch.com'
 
 MAIL_TO = ''
 
-MAIL_PASSWORD = 'xxx'
+MAIL_PASSWORD = 'EnjX67Zp8qPkLBlmhew4iE1n'
 
 get_var = globals().get

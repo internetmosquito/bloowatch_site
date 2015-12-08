@@ -82,7 +82,8 @@ def register():
                     datetime.datetime.utcnow(),
                 )
                 try:
-                    send_subscription_confirmation(user_email)
+                    # Comment this for now, we don't want to send subscription email
+                    # send_subscription_confirmation(user_email)
                     db.session.add(new_rm)
                     db.session.commit()
                     LOGGER.info('User registered correctly, email was ' + user_email)
